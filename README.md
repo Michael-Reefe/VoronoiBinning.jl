@@ -54,9 +54,9 @@ Required arguments:
     each element of `N` corresponds to an element of `x` and `y`. This is used to calculate the signal-to-noise ratios.
 - `target_SN::T2`: The target signal-to-noise ratio that one wishes to achieve during the binning process. Individual pixels that have
     a higher S/N than this will not be binned, while pixels with S/Ns lower than this will be binned to their neighbors until the bin
+    has a sufficiently close S/N.
 
 Optional arguments:
-    has a sufficiently close S/N.
 - `SN_func::Base.Callable`: A callable function that computes the signal-to-noise ratio of a set of pixels. The arguments to the function
     must be `(index, S, N)` where `index` is a set of indices for `S` and `N` that describes a bin or partial bin. If not specified, the
     default function calculates the S/N of a set of pixels with signals (S1, S2, ...) and noises (N1, N2, ...) as 
@@ -109,6 +109,9 @@ There are a few differences that are worth mentioning:
   allows the user to change them if one wishes. Similarly, the weighting scheme used by the `WeightedVoronoi` defaults to the one used in `vorbin`,
   but may also be changed to be any arbitrary function of the signal and the noise.
 - The `weights` return value is not the same as the `scale` return value from `vorbin`.  More specifically, `weights = 1/scale^2`.
+- The `area` return value is also not the same as the `area` return value from `vorbin`. `vorbin` always returns the area in pixel units, whereas this
+  version will return the area in whatever units the input data are provided in. This just means that the julia return value will be multiplied by
+  `pixel_size^2` compared to the python value.
 - Due to Julia's JIT compiler and more specific optimizations implemented for this package (using LoopVectorization.jl), the runtimes compared to the 
   python package are much faster. To get a general idea, testing with the default options on my laptop with a 600x600 image runs in 224 seconds, compared 
   to 1123 seconds using the python version. For a smaller 200x200 image, the julia version ran in 4 seconds compared to 20 seconds for the python version.

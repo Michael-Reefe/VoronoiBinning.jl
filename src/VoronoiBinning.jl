@@ -16,9 +16,11 @@ using LoopVectorization
 
 const DO_PLOTTING = try
     using PyPlot
+    plt.plot()
+    plt.close()
     true
 catch
-    println("WARNING: PyPlot package not found. The plotting capability will be disabled!")
+    println("WARNING: PyPlot or matplotlib not found. The plotting capability will be disabled!")
     false
 end
 

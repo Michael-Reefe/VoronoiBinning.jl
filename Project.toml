@@ -1,7 +1,7 @@
 name = "VoronoiBinning"
 uuid = "0480b74a-4474-4b41-b184-abfd81603c41"
 authors = ["Michael Reefe"]
-version = "1.0.0-DEV"
+version = "1.0.0"
 
 [deps]
 LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"

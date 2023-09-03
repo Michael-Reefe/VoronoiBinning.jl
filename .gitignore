@@ -1,1 +1,5 @@
 /Manifest.toml
+*.vscode
+*.DS_Store
+test.jl
+

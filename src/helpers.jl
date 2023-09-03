@@ -13,7 +13,7 @@ function check_inputs(
     N::AbstractVector{T2}, 
     target_SN::T2,
     SN_func::Base.Callable) where {
-        T1<:Integer,
+        T1<:Real,
         T2<:Real
     }
 
@@ -132,7 +132,7 @@ function roundness(
     x::AbstractVector{T1},
     y::AbstractVector{T1},
     pixel_size::T2) where {
-        T1<:Integer,
+        T1<:Real,
         T2<:Real
     }
     r_eff = √(length(x)/π)*pixel_size   # effective radius of a disc with the same area as the bin
@@ -187,7 +187,7 @@ function voronoi_bin_accretion(
     verbose::Bool=false,
     dist2_thresh::Real=1.44pixel_size^2,
     R_thresh::Real=0.3) where {
-        T1<:Integer,
+        T1<:Real,
         T2<:Real,
         T3<:Real
     } 
@@ -358,7 +358,7 @@ function voronoi_reassign_bad_bins!(
     x::AbstractVector{T2},
     y::AbstractVector{T2}) where {
         T1<:Integer,
-        T2<:Integer
+        T2<:Real
     }
     # Get the centroids of all the successful bins
     good = sort(unique(bin_numbers[bin_numbers .> 0]))
@@ -401,7 +401,7 @@ function voronoi_bin_adjustment!(
     bin_strategy::VoronoiStrategy,
     tolerance::T2;
     verbose::Bool=false) where {
-        T1<:Integer,
+        T1<:Real,
         T2<:Real,
         T3<:Real,
         T4<:Real
@@ -485,7 +485,7 @@ function initial_voronoi_step(
     SN_func::Base.Callable,
     pixel_size::T3;
     kwargs...) where {
-        T1<:Integer, 
+        T1<:Real, 
         T2<:Real,
         T3<:Real
     }
@@ -519,7 +519,7 @@ function get_bin_quantities(
     weights::AbstractVector{T3},
     SN_func::Base.Callable,
     pixel_size::T4) where {
-        T1<:Integer, 
+        T1<:Real, 
         T2<:Real,
         T3<:Real,
         T4<:Real

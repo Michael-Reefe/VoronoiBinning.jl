@@ -20,7 +20,7 @@ function plot_voronoi_tessellation(
     SN::AbstractVector{<:Real},
     target_SN::Real,
     pixel_size::Real) where {
-        T1<:Integer,
+        T1<:Real,
         T2<:Real,
         T3<:Integer,
         T4<:Real,
@@ -45,15 +45,15 @@ function plot_voronoi_tessellation(
         extent=[xmin - pixel_size/2, xmax + pixel_size/2, ymin - pixel_size/2, ymax + pixel_size/2])
     ax[1].plot(xnode, ynode, "w+", scalex=false, scaley=false)
     # ax[1].axis(:off)
-    ax[1].set_xlabel(L"$x$ (pixels)")
-    ax[1].set_ylabel(L"$y$ (pixels)")
+    ax[1].set_xlabel(L"$x$")
+    ax[1].set_ylabel(L"$y$")
     ax[1].set_title("Voronoi Bin Map")
 
     # Compute the radial distance from the bin with the highest S/N
     best_bin = argmax(SN)
     r = hypot.(x̄ .- x̄[best_bin], ȳ .- ȳ[best_bin])
     ax[2].plot(hypot.(x .- x̄[best_bin], y .- ȳ[best_bin]), S./N, "k.", label=L"Input $S/N$")
-    single = isone.(area)
+    single = area .≈ pixel_size.^2
     if any(single)
         ax[2].plot(r[single], SN[single], "x", label="Not binned")
     end

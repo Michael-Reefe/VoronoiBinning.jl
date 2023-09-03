@@ -140,7 +140,7 @@ function roundness(
 
     # r_max = √(maximum((x .- x̄).^2 .+ (y .- ȳ).^2))
     # make this fast and more memory efficient with LoopVectorization
-    r_max = -Inf
+    r_max = nextfloat(typemin(Float64))
     @turbo for i in eachindex(x)
         r_test = (x[i] - x̄)^2 + (y[i] - ȳ)^2
         r_max = r_test > r_max ? r_test : r_max
@@ -215,7 +215,7 @@ function voronoi_bin_accretion(
         test_bin = [bin; pixel]
         # min_dist = @views minimum((x[bin] .- x[pixel]).^2 .+ (y[bin] .- y[pixel]).^2)
         # LoopVectorization to the rescue
-        min_dist = Inf
+        min_dist = prevfloat(typemax(Float64))
         @turbo for bi ∈ eachindex(bin)
             dist_test = (x[bin[bi]] - x[pixel])^2 + (y[bin[bi]] - y[pixel])^2
             min_dist = dist_test < min_dist ? dist_test : min_dist

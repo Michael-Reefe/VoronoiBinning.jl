@@ -106,7 +106,7 @@ There are a few differences that are worth mentioning:
 - The `weights` return value is not the same as the `scale` return value from `vorbin`.  More specifically, `weights = 1/scale^2`.
 - Due to Julia's JIT compiler and more specific optimizations implemented for this package (using LoopVectorization.jl), the runtimes compared to the 
   python package are much faster. To get a general idea, testing with the default options on my laptop with a 600x600 image runs in 224 seconds, compared 
-  to 1123 seconds using the python version.
+  to 1123 seconds using the python version. For a smaller 200x200 image, the julia version ran in 4 seconds compared to 20 seconds for the python version.
 
 ## Citation
 

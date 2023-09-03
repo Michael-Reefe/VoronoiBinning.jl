@@ -13,8 +13,13 @@ behind the Voronoi binning and the different weighting schemes that are employed
 ## Installation
 
 ```julia
+julia> using Pkg
+julia> Pkg.add(url="https://github.com/Michael-Reefe/VoronoiBinning.jl")
+```
+or alternatively,
+```julia
 julia> ]
-(Environment)> add VoronoiBinning
+(Environment)> add "https://github.com/Michael-Reefe/VoronoiBinning.jl"
 ```
 
 ## Requirements
